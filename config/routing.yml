@@ -1,0 +1,3 @@
+html:
+  url:  /static/*
+  param: { module: sfSimplePage, action: index }

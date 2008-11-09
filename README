@@ -1,0 +1,52 @@
+# sfSimplePagePlugin
+
+## Overview
+
+The sfSimplePagePlugin allows you to manage like static pages with symfony.
+
+for example, if the request  is like this
+
+    http://example.com/frontend_dev.php/static/sample.html
+
+the module of this plugin, which is sfSimplePage module, render the sample.html in ./data/static directory.
+
+if the request is like this
+
+    http://example.com/frontend_dev.php/static/hoge/sample2.html
+
+render the sample2.html in ./data/static/hoge directory.
+
+These page is rendered by symfony, so you can use view system of partial, component, helper...
+
+## Instllation
+
+  * Install plugin:
+        
+        symfony plugin-install http://plugins.symfony-project.com/sfSimplePagePlugin
+        
+  * or through Subversion:
+        
+        svn co http://svn.symfony-project.com/plugins/sfSimplePagePlugin/trunk
+
+  * (only symfony 1.2) Enable this plugin in ProjectConfiguration.class.php
+        
+        public function setup()
+        {
+          $this->enablePlugins('sfSimplePagePlugin');
+        }
+
+  * Enable this sfSimplePage  module in your setting.yml
+        
+        all:
+          .settings:
+            enabled_modules:        [default, sfSimplePage]
+
+  * Make "static" directory in data directory
+        
+        mkdir ./data/static
+
+  * Deploy your template in ./data/static directory
+
+  * Clear cache
+        
+        ./symfony cc
