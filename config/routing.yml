@@ -1,3 +1,8 @@
-html:
-  url:  /static/*
+sfSimplePagePath:
+  url: /<?php echo sfConfig::get('app_sf_simple_page_plugin_route_prefix', 'static') ?>/*
+  param: { module: sfSimplePage, action: index }
+
+#use for url generation
+sfSimplePageFile:
+  url: /<?php echo sfConfig::get('app_sf_simple_page_plugin_route_prefix', 'static') ?>/:file
   param: { module: sfSimplePage, action: index }

@@ -18,7 +18,7 @@ render the sample2.html in ./data/static/hoge directory.
 
 These page is rendered by symfony, so you can use view system of partial, component, helper...
 
-## Instllation
+## Installation
 
   * Install plugin:
         
@@ -50,3 +50,18 @@ These page is rendered by symfony, so you can use view system of partial, compon
   * Clear cache
         
         ./symfony cc
+        
+  * [Optional] Use the sfSimplePageFile routing rule to create links to files in the static root dir
+  
+        e.g.in template : <?php echo link_to( 'About', '@sfSimplePageFile?file=about.html')?>
+
+NOTES:
+    The names of the route prefix and the static content directory can be changed from the application 
+    app.yml configuration file
+    
+    e.g. in apps/frontend/config/app.yml:
+    |all:
+    |  sf_simple_page_plugin_route_prefix: documentation
+    |  sf_simple_page_plugin_template_path: %SF_DATA_DIR%/doc
+    This will mean that the route prefix for static content is documentation (i.e. domain.com/index.php/documentation) and
+    that the file data are in data/doc relative to sympfony root on a typical installation
