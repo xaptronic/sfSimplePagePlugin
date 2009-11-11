@@ -14,13 +14,20 @@ abstract class BasesfSimplePageActions extends sfActions
   {
     // set template_path from path_info
     $pathinfo = $this->getRequest()->getPathInfo() ;
-    $route_prefix = sfConfig::get("app_sf_simple_page_plugin_route_prefix") ;
+    $route_prefix = sfConfig::get("app_sf_simple_page_plugin_route_prefix","static") ;
 
     //remove  trailing slashes
     $route_prefix = '/'. trim( $route_prefix, '/' ) ;
     $pathinfo = preg_replace( "#^{$route_prefix}#", "", $pathinfo ) ;
 
-    $template_path = sfConfig::get("app_sf_simple_page_plugin_template_path") . DIRECTORY_SEPARATOR . ltrim($pathinfo,'/');
+    //check i18n support
+    $culture = '' ;
+    if ( sfConfig::get('app_sf_simple_page_plugin_use_i18n', false ) ) {
+        $culture = $this->getUser()->getCulture() ;
+    }
+    
+    $template_path = sfConfig::get("app_sf_simple_page_plugin_template_path", "static") . DIRECTORY_SEPARATOR . 
+            ( (boolean)$culture ? $culture . DIRECTORY_SEPARATOR : '' ) . ltrim($pathinfo,'/');
     // check whether file is ended with directory separator or not
     // if ended with '/', add "index.html"
     if (preg_match("#/$#Di", $template_path)) {
