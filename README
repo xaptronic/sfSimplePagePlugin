@@ -53,11 +53,14 @@ These page is rendered by symfony, so you can use view system of partial, compon
         
   * [Optional] Use the sfSimplePageFile routing rule to create links to files in the static root dir
   
-        e.g.in template : <?php echo link_to( 'About', '@sfSimplePageFile?file=about.html')?>
+        e.g.in template : 
+        <?php echo link_to( 'About', '@sfSimplePageFile?file=about.html')?>
 
-  * [Optional] I18n support is provided thru the classical mean of session user culture (sf_culture parameter)
+  * [Optional] I18n support is provided through the classical means of session user culture (sf_culture parameter)
   
-        In application app.yml add  sf_simple_page_plugin_use_i18n: true to enable i18n support
+        In application app.yml add  
+            sf_simple_page_plugin_use_i18n: true 
+        to enable i18n support
         Now the session user culture (e.g. en, gr) is interpreted as a first implicit directory
         
         Example contents of static folder
@@ -69,15 +72,16 @@ These page is rendered by symfony, so you can use view system of partial, compon
                 help.html
                 about.html
         
-        The application is responsible for management of a sane sf_culture session variable. Read i18n support in "symfony book"
+        The application is responsible for management of a sane sf_culture session variable. 
+        Read i18n support in "symfony book"
 NOTES:
 -----
-    The names of the route prefix and the static content directory can be changed from the application 
-    app.yml configuration file
+    The names of the route prefix and the static content directory can be changed 
+    from the application app.yml configuration file
     
     e.g. in apps/frontend/config/app.yml:
-    |all:
-    |  sf_simple_page_plugin_route_prefix: documentation
-    |  sf_simple_page_plugin_template_path: %SF_DATA_DIR%/doc
+    >all:
+    >  sf_simple_page_plugin_route_prefix: documentation
+    >  sf_simple_page_plugin_template_path: %SF_DATA_DIR%/doc
     This will mean that the route prefix for static content is documentation (i.e. domain.com/index.php/documentation) and
     that the file data are in data/doc relative to sympfony root on a typical installation
