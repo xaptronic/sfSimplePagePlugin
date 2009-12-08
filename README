@@ -62,6 +62,8 @@ These page is rendered by symfony, so you can use view system of partial, compon
             sf_simple_page_plugin_use_i18n: true 
         to enable i18n support
         Now the session user culture (e.g. en, gr) is interpreted as a first implicit directory
+        Also when the static file is not found under the culture dir a final attempt is made on the static folder 
+            before giving a 404 error.
         
         Example contents of static folder
         static:
@@ -73,7 +75,7 @@ These page is rendered by symfony, so you can use view system of partial, compon
                 about.html
         
         The application is responsible for management of a sane sf_culture session variable. 
-        Read i18n support in "symfony book"
+        Read i18n support in "symfony book".
 NOTES:
 -----
     The names of the route prefix and the static content directory can be changed 
