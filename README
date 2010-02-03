@@ -76,9 +76,20 @@ These page is rendered by symfony, so you can use view system of partial, compon
         
         The application is responsible for management of a sane sf_culture session variable. 
         Read i18n support in "symfony book".
+        
+  * [Optional] Use the component sfSimplePage/static ('file'=>$file) from anywhere in the view layer to embed static
+      content on every page you desire.
+      
+    e.g. in apps/frontend/modules/product/templates/showSuccess.php
+      [...]
+      ><div id="terms">
+      ><?php include_component('sfSimplePage','static', array('file'=>'terms.html') ) ?>
+      ></div>
+      will output the contents of terms.html file inside the #terms div !
+    
 NOTES:
 -----
-    The names of the route prefix and the static content directory can be changed 
+ *  The names of the route prefix and the static content directory can be changed 
     from the application app.yml configuration file
     
     e.g. in apps/frontend/config/app.yml:
@@ -87,3 +98,5 @@ NOTES:
     >  sf_simple_page_plugin_template_path: %SF_DATA_DIR%/doc
     This will mean that the route prefix for static content is documentation (i.e. domain.com/index.php/documentation) and
     that the file data are in data/doc relative to sympfony root on a typical installation
+
+    
