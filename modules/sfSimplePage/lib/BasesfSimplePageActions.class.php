@@ -10,10 +10,10 @@
  */
 abstract class BasesfSimplePageActions extends sfActions
 {
-  public function executeIndex()
+  public function executeIndex($request)
   {
     // set template_path from path_info
-    $pathinfo = $this->getRequest()->getPathInfo() ;
+    $pathinfo = $request->getPathInfo() ;
     $route_prefix = sfConfig::get("app_sf_simple_page_plugin_route_prefix","static") ;
 
     //remove  trailing slashes
