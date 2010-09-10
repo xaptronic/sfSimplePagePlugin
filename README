@@ -28,7 +28,7 @@ These page is rendered by symfony, so you can use view system of partial, compon
         
         svn co http://svn.symfony-project.com/plugins/sfSimplePagePlugin/trunk
 
-  * (only symfony 1.2) Enable this plugin in ProjectConfiguration.class.php
+  * (only symfony 1.2+) Enable this plugin in ProjectConfiguration.class.php
         
         public function setup()
         {
@@ -54,50 +54,47 @@ These page is rendered by symfony, so you can use view system of partial, compon
   * [Optional] Use the sfSimplePageFile routing rule to create links to files in the static root dir
   
         e.g.in template : 
-        ><php echo link_to( 'About', '@sfSimplePageFile?file=about.html')>
+        echo link_to( 'About', '@sfSimplePageFile?file=about.html')
 
   * [Optional] I18n support is provided through the classical means of session user culture (sf_culture parameter)
   
-        In application app.yml add  
+    In application app.yml add  
             sf_simple_page_plugin_use_i18n: true 
         to enable i18n support
-        Now the session user culture (e.g. en, gr) is interpreted as a first implicit directory
-        Also when the static file is not found under the culture dir a final attempt is made on the static folder 
-            before giving a 404 error.
+
+   Now the session user culture (e.g. en, gr) is interpreted as a first implicit directory.
+    Also when the static file is not found under the culture dir a final attempt is made on the static folder before giving a 404 error.
         
         Example contents of static folder
-        >static/
-        >    en/
-        >        help.html
-        >        /about.html
-        >    el/
-        >        help.html
-        >        about.html
+        static/
+            en/
+                help.html
+                about.html
+            el/
+                help.html
+                about.html
         
-        The application is responsible for management of a sane sf_culture session variable. 
-        Read i18n support in "symfony book".
-        
-  * [Optional] Use the component sfSimplePage/static ('file'=>$file) from anywhere in the view layer to embed static
-      content on every page you desire.
-      
-    e.g. in apps/frontend/modules/product/templates/showSuccess.php
-      >  [...]
-      >  <div id="terms">
-      ><  php include_component('sfSimplePage','static', array('file'=>'terms.html') ) >
-      >  </div>
-      will output the contents of terms.html file inside the #terms div !
-    
-NOTES:
------
- *  The names of the route prefix and the static content directory can be changed 
-    from the application app.yml configuration file
-    
-    e.g. in apps/frontend/config/app.yml:
-    >all:
-    >  sf_simple_page_plugin_route_prefix: documentation
-    >  sf_simple_page_plugin_template_path: %SF_DATA_DIR%/doc
-    This will mean that the route prefix for static content is documentation
-    (i.e. domain.com/index.php/documentation) and that the file data are 
-    in data/doc relative to sympfony root on a typical installation
+    The application is responsible for the management of a sane sf_culture session variable. 
+    Read i18n support in "symfony book".
 
+  * [Optional] Use the component sfSimplePage/static ('file'=>$file) from anywhere in the view layer to embed static content on every page you desire.
+
+        e.g. in apps/frontend/modules/product/templates/showSuccess.php
+        [...]
+        <div id="terms">
+        <?php include_component('sfSimplePage','static', array('file'=>'terms.html') ) ?>
+        </div>
+    will output the contents of terms.html file inside the #terms div !
     
+## NOTES:
+*  The names of the route prefix and the static content directory can be changed 
+   from the application app.yml configuration file
+   
+        e.g. in apps/frontend/config/app.yml:
+        all:
+          sf_simple_page_plugin_route_prefix: documentation
+          sf_simple_page_plugin_template_path: %SF_DATA_DIR%/doc
+      
+  This will mean that the route prefix for static content is documentation
+  (i.e. domain.com/index.php/documentation) and that the file data are 
+  in data/doc relative to sympfony root on a typical installation
