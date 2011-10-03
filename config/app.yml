@@ -1,4 +1,6 @@
 all:
-  sf_simple_page_plugin_template_path: %SF_DATA_DIR%/static
-  sf_simple_page_plugin_route_prefix: static
-  sf_simple_page_plugin_use_i18n: false
+  sf_simple_page_plugin:
+    template_path: '%SF_DATA_DIR%/static'
+    route_prefix: static
+    use_i18n: false
+    routes_register: true
