@@ -2,7 +2,7 @@
 
 /**
  * Base actions for the sfSimplePagePlugin sfSimplePage module.
- * 
+ *
  * @package     sfSimplePagePlugin
  * @subpackage  sfSimplePage
  * @author      Your name here
@@ -20,9 +20,11 @@ abstract class BasesfSimplePageActions extends sfActions
     $route_prefix = '/'. trim( $route_prefix, '/' ) ;
     $pathinfo = preg_replace( "#^{$route_prefix}#", "", $pathinfo ) ;
 
+    $file_parameter = $request->getParameter('file');
+
     // prepare component file parameter
-    $this->file = $pathinfo ;
-    
+    $this->file = $file_parameter ? $file_parameter : $pathinfo ;
+
     return sfView::SUCCESS;
   }
 }
